@@ -1,26 +1,3 @@
-import sqlite3
-
-# Подключение к базе данных
-conn = sqlite3.connect("real_it.db")
-c = conn.cursor()
-
-
-def get_city(question):
-    """Метод, который извлекает информацию о городе, в котором живет клиент
-    :param question: вопрос клиента
-    :return: None, если город неопределен, и название города, если город
-    """
-    query = "SELECT DISTINCT City FROM Branches"
-    c.execute(query)
-    cities = []
-    for city in c.fetchall():
-        cities.append(city[0].lower())
-    for word in question:
-        if word in cities:
-            return word.capitalize()
-    return None
-
-
 def get_question_subject(question):
     # Вспомогательный словарь с ключевыми словами
     subjects_kw = {
